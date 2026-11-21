@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>JDE 2026, les sources</title>
+<meta name="description" content="Les sources citées pendant la table ronde Déploiement de l'IA en entreprise, JDE 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2b3270;
+    --navy-soft: #eceef7;
+    --orange: #e8901f;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --text: #2b3270;
+    --muted: #5d6290;
+    --line: #dfe1ee;
+    --emploi: #00a3e0;
+    --apprentissage: #7b2d8e;
+    --adoption: #e8901f;
+    --energie: #8ab523;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+
+  header { text-align: center; padding: 36px 0 8px; }
+  .event { font-size: clamp(2.4rem, 9vw, 3.6rem); font-weight: 800; letter-spacing: 0.01em; margin: 0 0 16px; line-height: 1; }
+  .band {
+    background: var(--navy);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: clamp(1.05rem, 4vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.25;
+    padding: 14px 18px;
+    margin: 0;
+  }
+  .sub {
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.95rem;
+    margin: 18px 0 6px;
+  }
+  .claim {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: clamp(1.25rem, 5vw, 1.8rem);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    padding: 14px 0;
+    margin-top: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; justify-content: flex-start; }
+  @media (min-width: 640px) { .tabs { justify-content: center; } }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 0 0 auto;
+    border: 0;
+    border-left: 5px solid var(--navy);
+    padding: 10px 14px;
+    font: inherit;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    background: var(--navy-soft);
+    color: var(--navy);
+    cursor: pointer;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab .count { font-size: 0.8rem; opacity: 0.7; }
+  .tab[data-theme="emploi"] { border-left-color: var(--emploi); }
+  .tab[data-theme="apprentissage"] { border-left-color: var(--apprentissage); }
+  .tab[data-theme="adoption"] { border-left-color: var(--adoption); }
+  .tab[data-theme="energie"] { border-left-color: var(--energie); }
+  .tab[aria-selected="true"] { background: var(--navy); color: #fff; }
+
+  main { padding: 8px 0 48px; }
+  .section-head { margin: 32px 0 14px; padding-left: 14px; border-left: 6px solid var(--accent); }
+  .section-head h2 { margin: 0; font-size: 1.5rem; text-transform: uppercase; font-weight: 800; }
+  .section-head p { margin: 2px 0 0; color: var(--muted); }
+  section[data-theme="emploi"] { --accent: var(--emploi); }
+  section[data-theme="apprentissage"] { --accent: var(--apprentissage); }
+  section[data-theme="adoption"] { --accent: var(--adoption); }
+  section[data-theme="energie"] { --accent: var(--energie); }
+  .warn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #9a5a0c;
+    background: #fdf1e1;
+    padding: 4px 8px;
+  }
+  .warn svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--orange); }
+
+  .grid { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--surface);
+    padding: 16px 16px 16px 18px;
+    text-decoration: none;
+    color: inherit;
+    border-left: 6px solid var(--accent);
+    box-shadow: 0 1px 0 var(--line), 0 0 0 1px var(--line);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover, .card:focus-visible { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(43,50,112,0.12), 0 0 0 1px var(--line); outline: none; }
+  .topic { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--accent); }
+  .card h3 { margin: 0; font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+  .org { margin: 0; font-weight: 500; }
+  .meta { margin: 0; font-size: 0.88rem; color: var(--muted); }
+  .open {
+    margin-top: auto;
+    padding-top: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--orange);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .open svg { width: 14px; height: 14px; }
+
+  footer { border-top: 1px solid var(--line); padding: 20px 0 40px; color: var(--muted); font-size: 0.85rem; text-align: center; }
+  footer strong { color: var(--navy); font-weight: 500; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <p class="event">JDE 2026</p>
+  <p class="band">Table ronde : déploiement de l'IA en entreprise</p>
+  <p class="sub">Les sources citées</p>
+</header>
+
+<nav aria-label="Thèmes">
+  <div class="wrap tabs" role="tablist" id="tabs"></div>
+</nav>
+
+<main class="wrap" id="content"></main>
+
+<footer class="wrap">
+  <p><strong>Samedi 21 novembre · ENSIM</strong></p>
+  <p>Sources sélectionnées pour leur fiabilité : institutions, revues relues par des pairs, échantillons importants. Le pictogramme d'alerte signale des études très citées mais fragiles.</p>
+</footer>
+
+<script>
+const THEMES = [
+  { id: "tout", label: "Tout" },
+  { id: "emploi", label: "Emploi", intro: "Métiers, juniors, recrutement, productivité" },
+  { id: "apprentissage", label: "Apprentissage", intro: "Formation, étudiants, compétences" },
+  { id: "adoption", label: "Adoption", intro: "Usages, confiance, changement" },
+  { id: "energie", label: "Énergie", intro: "Consommation et empreinte" }
+];
+
+const SOURCES = [
+  { theme: "emploi", topic: "Métiers", title: "IA générative et emploi : l'exposition des métiers", org: "Organisation internationale du travail", type: "Étude", sample: "≈ 30 000 tâches analysées", year: "2025", url: "https://doi.org/10.54394/QYPD5265" },
+  { theme: "emploi", topic: "Juniors", title: "Canaries in the Coal Mine : l'effet de l'IA sur l'emploi des débutants", org: "Stanford Digital Economy Lab", type: "Étude", sample: "Données de paie de millions de salariés (US)", year: "2025, révisée 2026", url: "https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine/" },
+  { theme: "emploi", topic: "Recrutement", title: "L'IA dans l'emploi et le recrutement : usages à haut risque", org: "Commission européenne, AI Act", type: "Règlement", sample: "Annexe III", year: "2024", url: "https://ai-act-service-desk.ec.europa.eu/en/employment-0" },
+  { theme: "emploi", topic: "Productivité", title: "Développeurs expérimentés ralentis par l'IA", org: "METR", type: "Essai randomisé", sample: "16 développeurs", year: "2025", url: "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/", warn: "Échantillon très faible" },
+
+  { theme: "apprentissage", topic: "Lycéens", title: "L'IA générative sans garde-fous peut nuire à l'apprentissage", org: "Wharton, revue PNAS", type: "Essai randomisé", sample: "≈ 1 000 lycéens", year: "2025", url: "https://doi.org/10.1073/pnas.2422633122" },
+  { theme: "apprentissage", topic: "Étudiants", title: "L'IA vue par les étudiants : le premier emploi comme point de rupture", org: "OpinionWay pour Chance", type: "Sondage", sample: "513 étudiants français", year: "2026", url: "https://www.solutions-numeriques.com/?p=247929" },
+  { theme: "apprentissage", topic: "Cerveau", title: "Your Brain on ChatGPT", org: "MIT Media Lab", type: "Prépublication", sample: "54 participants", year: "2025", url: "https://www.media.mit.edu/publications/your-brain-on-chatgpt/", warn: "Petit échantillon, non relue par des pairs" },
+
+  { theme: "adoption", topic: "Usages", title: "L'adoption rapide de l'IA générative, comparée au PC et à internet", org: "Fed de Saint-Louis", type: "Enquête représentative", sample: "Population américaine 18-64 ans", year: "2024", url: "https://www.stlouisfed.org/on-the-economy/2024/sep/rapid-adoption-generative-ai/" },
+  { theme: "adoption", topic: "Confiance", title: "Confiance, attitudes et usages de l'IA dans le monde", org: "Université de Melbourne et KPMG", type: "Enquête", sample: "48 000 personnes, 47 pays", year: "2025", url: "https://mbs.edu/faculty-and-research/trust-and-ai/key-findings-on-public-attitudes-towards-ai" },
+  { theme: "adoption", topic: "Changement", title: "70 % des projets de changement échouent-ils vraiment ?", org: "Mark Hughes, Journal of Change Management", type: "Revue de littérature", sample: "5 sources examinées", year: "2011", url: "https://research.brighton.ac.uk/en/publications/do-70-per-cent-of-all-organizational-change-initiatives-really-fa/" },
+
+  { theme: "energie", topic: "Data centers", title: "Energy and AI : la consommation électrique des data centers", org: "Agence internationale de l'énergie", type: "Rapport", sample: "Analyse mondiale", year: "2025", url: "https://www.iea.org/reports/energy-and-ai/executive-summary" },
+  { theme: "energie", topic: "Requête", title: "L'empreinte d'une requête Gemini", org: "Google", type: "Donnée d'entreprise", sample: "Mesure interne", year: "2025", url: "https://arxiv.org/abs/2508.15734", warn: "Chiffre non vérifié par un tiers" }
+];
+
+const ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 3h7v7M13 3L4 12"/></svg>';
+const WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>';
+const tabsEl = document.getElementById("tabs");
+const contentEl = document.getElementById("content");
+
+function esc(s) {
+  return s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+function card(s) {
+  const warn = s.warn ? `<span class="warn" title="${esc(s.warn)}">${WARN}<span>${esc(s.warn)}</span></span>` : "";
+  return `<a class="card" href="${s.url}" target="_blank" rel="noopener">
+    <span class="topic">${esc(s.topic)}</span>${warn}
+    <h3>${esc(s.title)}</h3>
+    <p class="org">${esc(s.org)} · ${esc(s.year)}</p>
+    <p class="meta">${esc(s.type)} · ${esc(s.sample)}</p>
+    <span class="open">Ouvrir la source ${ICON}</span>
+  </a>`;
+}
+
+function section(t) {
+  const items = SOURCES.filter(s => s.theme === t.id);
+  return `<section data-theme="${t.id}">
+    <div class="section-head"><h2>${t.label}</h2><p>${t.intro} · ${items.length} source${items.length > 1 ? "s" : ""}</p></div>
+    <div class="grid">${items.map(card).join("")}</div>
+  </section>`;
+}
+
+function render(id) {
+  const list = id === "tout" ? THEMES.filter(t => t.id !== "tout") : THEMES.filter(t => t.id === id);
+  contentEl.innerHTML = list.map(section).join("");
+  tabsEl.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", b.dataset.theme === id ? "true" : "false"));
+}
+
+tabsEl.innerHTML = THEMES.map(t => {
+  const n = t.id === "tout" ? SOURCES.length : SOURCES.filter(s => s.theme === t.id).length;
+  return `<button class="tab" role="tab" data-theme="${t.id}">${t.label}<span class="count">${n}</span></button>`;
+}).join("");
+
+tabsEl.addEventListener("click", e => {
+  const b = e.target.closest(".tab");
+  if (!b) return;
+  const id = b.dataset.theme;
+  history.replaceState(null, "", id === "tout" ? location.pathname : "#" + id);
+  render(id);
+  document.querySelector("nav").scrollIntoView({ behavior: "smooth" });
+});
+
+const start = location.hash.slice(1);
+render(THEMES.some(t => t.id === start) ? start : "tout");
+</script>
+</body>
+</html>
